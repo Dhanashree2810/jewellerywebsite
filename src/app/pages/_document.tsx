@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   render() {
@@ -10,7 +10,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;700&display=swap"
           />
         </Head>
-        <body style={{ fontFamily: '"Mona Sans", sans-serif' }} className="antialiased">
+        <body className="antialiased">
           <Main />
           <NextScript />
         </body>
@@ -20,3 +20,6 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
+
+
+

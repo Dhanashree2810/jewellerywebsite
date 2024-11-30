@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import banner4 from '@/assets/images/banner20.jpg'
 import banner23 from '@/assets/images/pendant10.jpg'

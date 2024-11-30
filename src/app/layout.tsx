@@ -17,10 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body
-        style={{ fontFamily: '"Mona Sans", sans-serif' }}
         className={`antialiased`}
       >
         <Layout>

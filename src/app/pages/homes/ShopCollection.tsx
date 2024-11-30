@@ -22,7 +22,6 @@ import Link from "next/link";
 import collection1 from '@/assets/images/collection1.png'
 import collection2 from '@/assets/images/collection2.png'
 import { BsArrowRight } from "react-icons/bs";
-import { LiaArrowRightSolid } from "react-icons/lia";
 
 
 const settings = {

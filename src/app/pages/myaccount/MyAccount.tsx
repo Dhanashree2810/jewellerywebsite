@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { toast } from '@/hooks/use-toast'
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -57,9 +58,13 @@ export default function MyAccount() {
     if (result.success) {
       console.log("Account Created:", result);
       setRegisterErrors({});
+      // toast({
+      //   title: "Account Created",
+      //   description: "Your account has been created successfully.",
+      // });
       toast({
         title: "Account Created",
-        description: "Your account has been created successfully.",
+        description: "Your account has been created successfully",
       });
     } else {
       const fieldErrors = result.error.errors.reduce((acc, curr) => {
@@ -260,7 +265,3 @@ export default function MyAccount() {
     </div>
   );
 }
-function toast(arg0: { title: string; description: string; }) {
-  throw new Error("Function not implemented.");
-}
-

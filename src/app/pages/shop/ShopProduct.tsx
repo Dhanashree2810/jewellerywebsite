@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/sheet";
 import { FiFilter } from "react-icons/fi";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { FaHeart } from 'react-icons/fa6'
 import necklace1 from '@/assets/images/2-1.jpg'
 import necklace2 from '@/assets/images/2-2.jpg'
@@ -82,7 +81,6 @@ const products: Product[] = [
 const ShopPage = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [filter, setFilter] = useState('*');
-    const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const [minPrice, setMinPrice] = useState(1000);
     const [maxPrice, setMaxPrice] = useState(12500);
     const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -153,16 +151,16 @@ const ShopPage = () => {
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12  z-50">
                 <div className="px-4 sm:px-6 lg:px-8 py-6">
-                    <Sheet>
+                    <Sheet open={isSidebarOpen}>
                         <SheetTrigger asChild>
-                            <Button className="bg-gray-800 text-white px-4 rounded flex items-center">
+                            <Button className="bg-gray-800 text-white px-4 rounded flex items-center" >
                                 <span className="mr-2">
                                     <FiFilter className="w-5 h-5" />
                                 </span>
                                 Filter
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side={'left'}>
+                        <SheetContent side={'left'} >
                             <SheetHeader>
                                 <VisuallyHidden.Root>
                                     <SheetTitle>Filter Products</SheetTitle>
