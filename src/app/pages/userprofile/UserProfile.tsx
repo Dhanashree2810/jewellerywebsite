@@ -249,7 +249,7 @@ export default function UserProfile() {
                         <FormField
                           control={form.control}
                           name="img"
-                          render={({ field }) => (
+                          render={() => (
                             <FormItem>
                               <FormLabel>User Profile</FormLabel>
                               <FormControl>

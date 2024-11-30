@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import detailimg1 from '@/assets/images/2-1.jpg'
 import detailimg2 from '@/assets/images/productdet1.jpg'
@@ -47,11 +47,11 @@ interface Product {
     description?: string;
 }
 
-interface Props {
-    recommended: Product[];
+interface ProductDetailsProps {
+    productid: string;
 }
 
-const ProductDetails = ({ productid }: any) => {
+const ProductDetails = ({ productid }: ProductDetailsProps) => {
     const [selectedImage, setSelectedImage] = useState<StaticImageData>(detailimg1);
     const [zoom, setZoom] = useState(false);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -84,7 +84,7 @@ const ProductDetails = ({ productid }: any) => {
         setReviews((prevReviews) => [...prevReviews, newReview]);
     };
 
-    const product = {
+    const product = useMemo(() => ({
         id: productid,
         category: 'Necklaces',
         name: '9ct White Gold 0.05cttw Diamond Circle Necklace',
@@ -106,14 +106,14 @@ const ProductDetails = ({ productid }: any) => {
             { id: 3, name: '9ct White Gold Blue Topaz Teardrop Pendant', img: related3, price: 12500.00, category: "Necklaces", quantity: 1, description: "A dazzling diamond oval cluster pendant crafted in 9ct white gold." },
             { id: 4, name: '18ct Yellow Gold 0.10cttw Diamond & Baroque Pearl Pendant', img: related4, price: 8050.00, category: "Necklaces", quantity: 1, description: "A dazzling diamond oval cluster pendant crafted in 9ct white gold." },
         ],
-    };
+    }), [productid]);
 
     useEffect(() => {
         if (product.images && product.images.length > 0) {
             setSelectedImage(product.images[0]);
         }
         setQuantities({ [product.id]: product.quantity });
-    }, []);
+    }, [product]);
 
     const handleMouseEnter = () => {
         setZoom(true);
@@ -123,13 +123,13 @@ const ProductDetails = ({ productid }: any) => {
         setZoom(false);
     };
 
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const { offsetX, offsetY, target } = e.nativeEvent;
-        const { width, height } = target;
+        const rect = (target as HTMLDivElement).getBoundingClientRect();
 
         setCursorPosition({
-            x: offsetX / width * 100,
-            y: offsetY / height * 100,
+            x: (offsetX / rect.width) * 100,
+            y: (offsetY / rect.height) * 100,
         });
     };
 
@@ -147,7 +147,7 @@ const ProductDetails = ({ productid }: any) => {
         }));
     };
 
-    const handleSelectedItem = (item: any) => {
+    const handleSelectedItem = (item: Product) => {
         console.log("item", item);
 
         setSelectedProduct(item);
@@ -216,7 +216,7 @@ const ProductDetails = ({ productid }: any) => {
                                     <h1 className="text-sm font-normal text-gray-600 py-2">{product.category}</h1>
                                     <h1 className="text-lg lg:text-xl font-normal">{product.name}</h1>
                                     <div className=' flex flex-row items-center gap-4'>
-                                        <FaStar size={15}/>
+                                        <FaStar size={15} />
                                         <h2 className=' text-sm font-semibold'>{product.ratings}</h2>
                                         <h2 className='font-normal text-sm py-2 text-gray-400'> SKU:  <span className=' font-semibold text-black'>{product.sku}</span></h2>
                                     </div>

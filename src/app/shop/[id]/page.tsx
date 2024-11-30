@@ -1,18 +1,18 @@
-'use client'
+'use client';
 import { useParams } from 'next/navigation';
 import ProductDetails from "@/app/pages/shop/ProductDetails";
-
-
 
 export default function ProductDetailspage() {
   const params = useParams();
   const { id } = params;
 
-  console.log("productid",id);
-  
+  const productId = typeof id === 'string' ? id : '';
+
+  console.log("productid", productId);
+
   return (
     <div>
-        <ProductDetails productid={id}/>
+        <ProductDetails productid={productId} />
     </div>
-  )
+  );
 }

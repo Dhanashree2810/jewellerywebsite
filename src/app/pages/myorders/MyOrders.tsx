@@ -43,7 +43,7 @@ interface Order {
 }
 
 export default function MyOrders() {
-  const [orders, setOrders] = useState<Order[]>([
+  const [orders] = useState<Order[]>([
     {
       id: "402-1815915-0645319",
       date: "November 28, 2024",
@@ -262,7 +262,7 @@ export default function MyOrders() {
 
           {orders.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-xl text-gray-600 mb-4">You haven't placed any orders yet.</p>
+              <p className="text-xl text-gray-600 mb-4">You haven&apos;t placed any orders yet.</p>
               <Link href="/shop" passHref>
                 <Button>Start Shopping</Button>
               </Link>
